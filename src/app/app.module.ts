@@ -8,9 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CourseComponent } from './course/course.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { MaterialModule } from '../material/material.module';
+
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -18,15 +20,15 @@ import { SignupComponent } from './signup/signup.component';
     AppComponent,
     CourseComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule
+    MaterialModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

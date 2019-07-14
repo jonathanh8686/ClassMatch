@@ -1,0 +1,55 @@
+<mat-toolbar class="mat-elevation-z2"  style="background-color: #21B39D;" >
+  <button mat-button style="background-color: #21B39D" [matMenuTriggerFor]="menu">
+    <mat-icon style="color: white">menu</mat-icon>
+  </button>
+  <span style="color: white">{{title}}</span>
+  <span class="example-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="appMenu">
+    <mat-icon style="color: white">3d_rotation</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="MenuClick('Review Queue')">
+    <mat-icon>apps</mat-icon>
+    <span>Review Queue</span>
+  </button>
+  <button mat-menu-item (click)="MenuClick('Review Ranker')">
+    <mat-icon>arrow_downward</mat-icon>
+    <span>Review Ranker</span>
+  </button>
+  <button mat-menu-item (click)="MenuClick('Review Summary')">
+    <mat-icon>poll</mat-icon>
+    <span>Review Summary</span>
+  </button>
+  <button mat-menu-item >
+    <mat-icon>replay_30</mat-icon>
+    <span><a href="{{LinkUrl}}/qc/RecentlyReviewed.aspx" style="color: rgb(0,0,0)" target="_blank">Recent Review</a></span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>cancel</mat-icon>
+    <span>Cancel</span>
+  </button>
+</mat-menu>
+
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="this.SettingChild.showSetting();"> Settings </button>
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">Train Rules</button>
+  <button mat-menu-item> Help </button>
+
+</mat-menu>
+<mat-menu #subMenu="matMenu">
+  <button mat-menu-item ><span><a href="./TrainedRuleClient" style="color: rgb(0,0,0)" target="_blank">Client</a></span> </button>
+  <button mat-menu-item ><span><a href="./TrainedRuleCMS" style="color: rgb(0,0,0)" target="_blank">CMS</a></span> </button>
+  <button mat-menu-item ><span><a href="./TrainedRuleProgram" style="color: rgb(0,0,0)" target="_blank">Program</a></span> </button>
+</mat-menu>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav">
+    <mat-list class="list-nav">
+      <mat-list-item class="list-item">
+
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+</mat-sidenav-container>
