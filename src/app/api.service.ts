@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class ApiService {
   constructor(private http: HttpClient) { }
-  GetCourses() {
-      return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class')
+  GetCoursesID(id : number) {
+      return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/' + id);
   }
 
 

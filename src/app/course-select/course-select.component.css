@@ -1,0 +1,50 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+   .mat-column-period {
+    flex: 1 1 20%;
+    padding-right: 3%;
+} 
+
+#periodSel {
+  flex: 1 1 20%;
+}
+
+.mat-column-courseName {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 100% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  padding-right: 3%;
+  
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+::ng-deep .mat-select{
+  flex: 1 1 10%; 
+}

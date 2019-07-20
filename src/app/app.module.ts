@@ -15,6 +15,9 @@ import { SignupComponent } from './signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CourseSelectComponent } from './course-select/course-select.component';
 
 
 @NgModule({
@@ -23,14 +26,18 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     CourseComponent,
     LoginComponent,
     SignupComponent,
-    MenuComponent
+    MenuComponent,
+    WelcomeComponent,
+    DashboardComponent,
+    CourseSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

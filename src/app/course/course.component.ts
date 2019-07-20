@@ -12,7 +12,7 @@ export class CourseComponent implements OnInit {
   courses: any[] = [];
 
   ngOnInit() {
-      this.api.GetCourses().subscribe(
+      this.api.GetCoursesID(1).subscribe(
           (data: any) => { this.courses = data }, () => {}, () => {console.log("test")});
   }
 
