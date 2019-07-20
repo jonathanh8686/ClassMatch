@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+
+
 import {
   MatRadioModule,
   MatTooltipModule,
@@ -21,7 +23,9 @@ import {
   MatProgressSpinnerModule,
   MatCheckboxModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  
 } from '@angular/material';
 
 const modules = [
@@ -46,7 +50,8 @@ const modules = [
   MatRadioModule,
   MatCheckboxModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAutocompleteModule
 ]
 
 @NgModule({

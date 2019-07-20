@@ -18,6 +18,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseSelectComponent } from './course-select/course-select.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -37,7 +38,9 @@ import { CourseSelectComponent } from './course-select/course-select.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

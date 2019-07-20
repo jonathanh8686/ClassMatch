@@ -1,50 +1,40 @@
-/* Structure */
-table {
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
     width: 100%;
   }
   
-
-  .example-radio-group {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0;
-  }
-  
-  .example-radio-button {
-    margin: 5px;
+  .class-select-autocomplete{
+    width:100%;
   }
 
-   .mat-column-period {
-    flex: 1 1 20%;
-    padding-right: 3%;
-} 
 
-#periodSel {
-  flex: 1 1 20%;
+  .springSelection {
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+
+  }
+
+  .center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+
+  
+.card-demo mat-card,
+.card-demo mat-card-content {
+  margin-bottom: 24px;
 }
 
-.mat-column-courseName {
-  word-wrap: break-word !important;
-  white-space: unset !important;
-  flex: 0 0 100% !important;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  padding-right: 3%;
-  
-  -ms-word-break: break-all;
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
-  word-break: break-all;
-  /* Instead use this non-standard one: */
-  word-break: break-word;
-  
-  /* Adds a hyphen where the word breaks, if supported (No Blink) */
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
+.card-demo mat-card-footer {
+  left: 24px;
+  margin-bottom: 24px;
 }
 
-::ng-deep .mat-select{
-  flex: 1 1 10%; 
+.containerX {
+  border: none;
+  box-sizing: content-box !important;
 }

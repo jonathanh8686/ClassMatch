@@ -11,5 +11,10 @@ export class ApiService {
       return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/' + id);
   }
 
+  GetCourses()
+  {
+    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class');
+  }
+
 
 }

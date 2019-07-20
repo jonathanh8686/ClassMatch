@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { ApiService } from '../api.service';
+import { MatAutocompleteModule, MatAutocompleteOrigin, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-course-select',
@@ -12,50 +17,45 @@ export class CourseSelectComponent implements OnInit {
 
   constructor(private api: ApiService) { }
 
-  courseData: any[] = [];
-  dataSource = new MatTableDataSource(this.courseData);
-
-  displayedColumns: string[] = ['select', 'courseId', 'courseName', 'period', 'term'];
-  
-  coursePeriods = {};
-
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  myControl = new FormControl();
+  courses: any[] = [];
+  filteredOptions: Observable<any[]>;
 
   ngOnInit() {
-    this.api.GetCoursesID(3).subscribe
-      (
-        (data: any) => {
-          console.log(data);
 
-          data.forEach(element => {
-            var temp = element;
+    this.api.GetCourses().subscribe(
+      (data: any) => { this.courses = data }, () => { }, () => {
 
-            // if usercourse array is null, then there is no match between this user and that course (user is not enrolled)
-            temp.courses['usercourse'] = temp.usercourse != null;
-            this.courseData.push(temp.courses);
-          });
+        this.filteredOptions = this.myControl.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => typeof value === 'string' ? value : value.courseName),
+            map(courseName => courseName ? this._filter(courseName) : this.courses.slice())
+          );
+      });
 
-          console.log(this.courseData)
-        }, () => { },
 
-        () => {
-          console.log("test");
-          this.dataSource = new MatTableDataSource(this.courseData);
-        });
   }
 
-  toggle(i) {
-    console.log(this.courseData[i]);
-
-    console.log(this.coursePeriods[this.courseData[i].courseId]);
+  displayFn(course?: any): string | undefined {
+    return course ? course.courseName : undefined;
   }
 
-  onPeriodSelect(val, courseID)
-  {
-    this.coursePeriods[courseID] = val;
+  private _filter(name: string): any[] {
+    const filterValue = name.toLowerCase();
+    
+    return this.courses.filter(course => course.courseName.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+
+  getPosts(a : any) {
+    console.log("test");
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.courseName),
+      map(courseName => courseName ? this._filter(courseName) : this.courses.slice())
+    );
   }
 
 }

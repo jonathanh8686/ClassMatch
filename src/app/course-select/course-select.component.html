@@ -1,57 +1,133 @@
-<mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+<mat-card class="card-demo">
+    <mat-card-title>Class Match</mat-card-title>
+    <mat-card-subtitle>Find out who you share classes with</mat-card-subtitle>
 
+    <mat-card-content>
+        <div class="containerX">
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+                <div fxFlex>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <mat-card class="fallSelection mat-elevation-z0" style="text-align: center;">
+                        <mat-card-header>
+                            <mat-card-title>Fall Semester</mat-card-title>
+                        </mat-card-header>
 
-    <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>Enrolled?</th>
-        <td mat-cell *matCellDef="let course; let i = index">
-            <mat-checkbox (change)="$event ? toggle(i) : null" [checked]=course.usercourse></mat-checkbox>
-        </td>
-    </ng-container>
+                        <mat-card-content>
+                                <form class="example-form">
+                                        <mat-form-field class="class-select-autocomplete">
+                                            <input type="text" placeholder="Period 1" aria-label="Period 1" matInput
+                                                [formControl]="myControl" [matAutocomplete]="auto" >
+                                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                    {{option.courseName}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                    </form>
 
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 2" aria-label="Period 2" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
 
-    <ng-container matColumnDef="courseId">
-        <th mat-header-cell *matHeaderCellDef>
-            <div fxHide fxShow.gt-sm>Course ID</div>
-        </th>
-        <td mat-cell *matCellDef="let course">
-            <div fxHide fxShow.gt-sm>{{course.courseId}}</div>
-        </td>
-    </ng-container>
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 3" aria-label="Period 3" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
 
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 4" aria-label="Period " matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
 
-    <ng-container matColumnDef="courseName">
-        <th mat-header-cell *matHeaderCellDef> Course Name </th>
-        <td mat-cell *matCellDef="let course"> {{course.courseName}} </td>
-    </ng-container>
+                    <mat-card class="springSelection mat-elevation-z0" style="text-align: center; ">
+                        <mat-card-header>
+                            <mat-card-title>Spring Semester</mat-card-title>
+                        </mat-card-header>
 
-    <ng-container matColumnDef="period">
-        <th mat-header-cell *matHeaderCellDef> Period </th>
-        <td mat-cell *matCellDef="let course">
-                <mat-select (selectionChange)="onPeriodSelect($event.value, course.courseId)" id="periodSel">
-                    <mat-option value="" selected></mat-option>
-                    <mat-option value='1'>1</mat-option>
-                    <mat-option value='2'>2</mat-option>
-                    <mat-option value='3'>3</mat-option>
-                    <mat-option value='4'>4</mat-option>
-                </mat-select>
-        </td>
-    </ng-container>
+                        <mat-card-content>
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 1" aria-label="Period 1" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
 
-    <ng-container matColumnDef="term">
-        <th mat-header-cell *matHeaderCellDef> Term </th>
-        <td mat-cell *matCellDef="let course">
-            <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1" style="padding: 10px">Fall</mat-radio-button>
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 2" aria-label="Period 2" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
 
-                <mat-radio-button value="2">Spring</mat-radio-button>
-            </mat-radio-group>
-        </td>
-    </ng-container>
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 3" aria-label="Period 3" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+                            <form class="example-form">
+                                <mat-form-field class="class-select-autocomplete">
+                                    <input type="text" placeholder="Period 4" aria-label="Period " matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option.courseName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div fxFlex> I'm below on mobile, and to the right on larger devices.</div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-footer style="width:95%">
+    </mat-card-footer>
+</mat-card>
+
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
