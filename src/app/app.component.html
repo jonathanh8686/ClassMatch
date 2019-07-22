@@ -1,72 +1,82 @@
 <mat-sidenav-container>
     <mat-sidenav  #sidenav role="navigation">
      <mat-nav-list>
-      <a mat-list-item>
+      <a mat-list-item
+          *ngIf="!auth.isAuthenticated()"
+          (click)="auth.login()">
         <mat-icon class="icon">input</mat-icon>
         <span class="label">Login</span>
       </a>
       <a mat-list-item
-        routerLink="/">
+          routerLink="/">
         <mat-icon class="icon">home</mat-icon>
           <span class="label">Home</span>
       </a>
       <a mat-list-item
-        routerLink="/dashboard">
+        *ngIf="auth.isAuthenticated()"
+        routerLink="/courseselect">
         <mat-icon class="icon">dashboard</mat-icon>
         <span class="label">Dashboard</span>
       </a>
-      <a  mat-list-item type="button">
+      <a  mat-list-item
+        *ngIf="auth.isAuthenticated()"
+        (click)="auth.logout()" type="button">
         <mat-icon class="icon">input</mat-icon>
         <span class="label">LogOut</span>
       </a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content style="overflow: hidden">
       <mat-toolbar color="primary">
        <div fxHide.gt-xs>
-         <button mat-icon-button>
+         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
        <div>
-         <a>
-            Material Blog
+         <a routerLink="/">
+            Class Match
          </a>
        </div>
        <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
           <ul fxLayout fxLayoutGap="20px" class="navigation-items">
               <li>
-                  <a>
+                  <a
+                    *ngIf="!auth.isAuthenticated()"
+                    (click)="auth.login()">
                     <mat-icon class="icon">input</mat-icon>
-                    <span  class="label">Login</span>
+                    <span  class="label" style="padding-left: 15%">Login</span>
                    </a>
               </li>
               <li>
-                <a 
-                    routerLink="/">
+                <a
+                  routerLink="/">
                     <mat-icon class="icon">home</mat-icon>
-                    <span class="label">Home</span>
+                    <span class="label" style="padding-left: 15%">Home</span>
                 </a>
               </li>
               <li>
                   <a
-                    routerLink="/dashboard">
+                    *ngIf="auth.isAuthenticated()"
+                    routerLink="/courseselect">
                       <mat-icon class="icon">dashboard</mat-icon>
-                      <span class="label">Dashboard</span>
+                      <span class="label" style="padding-left: 3%">Dashboard</span>
                   </a>
                 </li>
               <li>
-                  <a>
+                  <a
+                  *ngIf="auth.isAuthenticated()"
+                  (click)="auth.logout()" type="button"
+                  >
                     <mat-icon class="icon">input</mat-icon>
-                    <span class="label">LogOut</span>
+                    <span class="label" style="padding-left: 15%">LogOut</span>
                    </a>
               </li>
           </ul>
        </div>
       </mat-toolbar>
       <main>
-            <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
       </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
-

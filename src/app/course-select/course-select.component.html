@@ -15,9 +15,9 @@
                         <mat-card-content>
                                 <form class="example-form">
                                         <mat-form-field class="class-select-autocomplete">
-                                            <input type="text" placeholder="Period 1" aria-label="Period 1" matInput
-                                                [formControl]="myControl" [matAutocomplete]="auto" >
-                                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                            <input id="F1" type="text" placeholder="Period 1" aria-label="Period 1" matInput
+                                                [formControl]="myControl" [matAutocomplete]="auto1" >
+                                            <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 1)">
                                                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                                     {{option.courseName}}
                                                 </mat-option>
@@ -27,9 +27,9 @@
 
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
-                                    <input type="text" placeholder="Period 2" aria-label="Period 2" matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                    <input id="F2" type="text" placeholder="Period 2" aria-label="Period 2" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto2">
+                                    <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 2)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>
@@ -40,8 +40,8 @@
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
                                     <input type="text" placeholder="Period 3" aria-label="Period 3" matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        [formControl]="myControl" [matAutocomplete]="auto3">
+                                    <mat-autocomplete #auto3="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 3)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>
@@ -52,8 +52,8 @@
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
                                     <input type="text" placeholder="Period 4" aria-label="Period " matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        [formControl]="myControl" [matAutocomplete]="auto4">
+                                    <mat-autocomplete #auto4="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 4)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>
@@ -72,8 +72,8 @@
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
                                     <input type="text" placeholder="Period 1" aria-label="Period 1" matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        [formControl]="myControl" [matAutocomplete]="auto5">
+                                    <mat-autocomplete #auto5="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 5)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>
@@ -84,8 +84,8 @@
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
                                     <input type="text" placeholder="Period 2" aria-label="Period 2" matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        [formControl]="myControl" [matAutocomplete]="auto6">
+                                    <mat-autocomplete #auto6="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 6)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>
@@ -96,8 +96,8 @@
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
                                     <input type="text" placeholder="Period 3" aria-label="Period 3" matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                        [formControl]="myControl" [matAutocomplete]="auto7">
+                                    <mat-autocomplete #auto7="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 7)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>
@@ -107,9 +107,9 @@
 
                             <form class="example-form">
                                 <mat-form-field class="class-select-autocomplete">
-                                    <input type="text" placeholder="Period 4" aria-label="Period " matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getPosts($event)">
+                                    <input type="text" placeholder="Period 4" aria-label="Period 4" matInput
+                                        [formControl]="myControl" [matAutocomplete]="auto8" value="alskjf">
+                                    <mat-autocomplete #auto8="matAutocomplete" [displayWith]="displayFn" (optionSelected)="classSelected($event, 8)">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option.courseName}}
                                         </mat-option>

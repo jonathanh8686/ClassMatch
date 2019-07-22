@@ -5,32 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CourseComponent } from './course/course.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material/material.module';
 
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { MenuComponent } from './menu/menu.component';
-
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseSelectComponent } from './course-select/course-select.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { AuthService } from './auth.service';
+import { UserinfoComponent } from './userinfo/userinfo.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CourseComponent,
-    LoginComponent,
-    SignupComponent,
-    MenuComponent,
     WelcomeComponent,
-    DashboardComponent,
-    CourseSelectComponent
+    CourseSelectComponent,
+    UserinfoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +35,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 

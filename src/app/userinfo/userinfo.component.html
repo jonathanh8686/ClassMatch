@@ -1,0 +1,45 @@
+<mat-card class="center-card mat-elevation-z0" style="overflow: hidden">
+    <mat-card-content>
+        <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+
+            <div fxFlex fxFlex fxLayoutAlign="center">
+                <h1 style="font-family: 'Open Sans', sans-serif;">Enter User Info</h1>
+            </div>
+
+            <div fxFlex fxFlex fxLayoutAlign="center">
+                <h3 style="font-family: 'Open Sans', sans-serif;">(Only first time login)</h3>
+            </div>
+
+            <div fxFlex fxLayoutAlign="center">
+                <mat-form-field>
+                    <input matInput placeholder="First Name" [formControl]="fnFormControl">
+                    <mat-error *ngIf="fnFormControl.hasError('required')">
+                        <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div fxFlex fxFlex fxLayoutAlign="center">
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" [formControl]="lnFormControl">
+                    <mat-error *ngIf="lnFormControl.hasError('required')">
+                        <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <br>
+
+            <div fxFlex fxFlex fxLayoutAlign="center">
+                <button mat-flat-button color="primary" (click)="addUser()">Continue</button>
+            </div>
+
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+          Use of this source code is governed by an MIT-style license that
+          can be found in the LICENSE file at http://angular.io/license -->
