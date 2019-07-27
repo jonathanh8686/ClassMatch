@@ -8,7 +8,6 @@
     width:100%;
   }
 
-
   .springSelection {
     justify-content: center;
     align-items: center;
@@ -37,4 +36,8 @@
 .containerX {
   border: none;
   box-sizing: content-box !important;
+}
+
+.class-select-form {
+  width: 80%;
 }

@@ -7,12 +7,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class ApiService {
   constructor(private http: HttpClient) { }
-  GetUserCourses(email : string) {
+  GetUserCourses(email: string) {
     return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetUserCourses/' + email);
   }
 
   GetCourses() {
-    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetAll');
+    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetAll/');
   }
 
   AddUser(firstName: string, lastName: string, email: string) {
@@ -30,27 +30,37 @@ export class ApiService {
   }
 
   GetUsers() {
-    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/user/Get');
+    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/user/Get/');
   }
 
   CheckUser(email: string) {
     return this.http.get('http://jonathan-pc/ClassMatchAPI/api/user/CheckUser/' + email);
   }
 
-  AddUserCourse(courseId: string, userEmail: string, boxId: Number) {
+  AddUserCourse(courseId: string, userEmail: string, boxId: Number, teacherName: string) {
     var postBody = {
-      "courseId" : courseId,
+      "courseId": courseId,
       "userEmail": userEmail,
-      "boxId": boxId // 1,2,3,4,5,5,6,7,8 (S,F) + Period
+      "boxId": boxId, // 1,2,3,4,5,5,6,7,8 (S,F) + Period
+      "teacherName": teacherName
     };
 
-    var hdr = new HttpHeaders({ "Content-Type": "application/json" });
-
+    var hdr = new HttpHeaders({ "Content-Type": "application/json"});
+    
     var bodyString = JSON.stringify(postBody);
     console.log(bodyString);
     this.http.post('http://jonathan-pc/ClassMatchAPI/api/class/AddUserCourse', bodyString, { headers: hdr }).subscribe();
   }
-  
+
+  GetCourseUsers(courseId: string) {
+    console.log("hit");
+    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetCourseUsers/' + courseId.replace("/", "`"));
+  }
+
+  GetAllTeachers() {
+    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetAllTeachers/');
+  }
+
 
 
 
