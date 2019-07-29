@@ -49,12 +49,15 @@ export class ApiService {
     
     var bodyString = JSON.stringify(postBody);
     console.log(bodyString);
-    this.http.post('http://jonathan-pc/ClassMatchAPI/api/class/AddUserCourse', bodyString, { headers: hdr }).subscribe();
+    return this.http.post('http://jonathan-pc/ClassMatchAPI/api/class/AddUserCourse', bodyString, { headers: hdr });
   }
 
-  GetCourseUsers(courseId: string) {
-    console.log("hit");
-    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetCourseUsers/' + courseId.replace("/", "`"));
+  GetCourseUsers(courseId: string, period: number, teacher: string, term: string) {
+    
+    var idstring = courseId.replace("/","`") + "/" + period.toString() + "/" + teacher + "/" + term;
+    console.log(idstring);
+
+    return this.http.get('http://jonathan-pc/ClassMatchAPI/api/class/GetCourseUsers/' + idstring);
   }
 
   GetAllTeachers() {

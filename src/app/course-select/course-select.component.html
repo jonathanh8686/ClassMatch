@@ -12,7 +12,7 @@
 
                         <mat-card-content>
 
-                            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+                            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="row" fxFlex>
                                 <div fxFlex>
 
 
@@ -26,7 +26,7 @@
                                                     (optionSelected)="classSelected($event, i + 1)">
                                                     <mat-option *ngFor="let option of classFilteredOptions[i] | async"
                                                         [value]="option">
-                                                        {{option.courseId}}: {{option.courseName}}
+                                                        {{option.courseName}}
                                                     </mat-option>
                                                 </mat-autocomplete>
                                             </mat-form-field>
@@ -69,7 +69,7 @@
 
                         <mat-card-content>
 
-                            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+                            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="row" fxFlex>
                                 <div fxFlex>
 
                                     <ng-container *ngFor="let ind of forIndex; let i = index">
@@ -82,7 +82,7 @@
                                                     (optionSelected)="classSelected($event, i + 5)">
                                                     <mat-option *ngFor="let option of classFilteredOptions[i + 4] | async"
                                                         [value]="option">
-                                                        {{option.courseId}} {{option.courseName}}
+                                                        {{option.courseName}}
                                                     </mat-option>
                                                 </mat-autocomplete>
                                             </mat-form-field>
@@ -124,7 +124,7 @@
                     <mat-form-field>
                         <mat-label>Selected Class</mat-label>
                         <mat-select (selectionChange)='showSelected($event)'>
-                            <mat-option *ngFor="let course of userCourses" [value]="course.courseId">
+                            <mat-option *ngFor="let course of userCourses" [value]="course">
                                 {{course.courseName}}
                             </mat-option>
                         </mat-select>

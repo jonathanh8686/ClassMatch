@@ -89,8 +89,16 @@ export class CourseSelectComponent implements OnInit {
               (data: any) => { this.userCourses = data }, () => { }, () => {
                 this.userCourses.forEach(course => {
                   var boxNum = course['period'] + (course['term'] == "F" ? 0 : 4);
+
+                  // setting the classSelections to the value stored in database
                   this.classControls[boxNum - 1].setValue({ "courseID": course['courseID'], "courseName": course['courseName'] });
 
+
+                  // setting the teacherSelections to the value in the database
+                  var teacherFirstName = course['teacher'].split(" ")[0]; // teacherName from userCourse object is a full name so we need to split into first and last
+                  var teacherLastName = course['teacher'].split(" ")[1];
+
+                  this.teacherControls[boxNum - 1].setValue({ "firstName": teacherFirstName, "lastName": teacherLastName });
                 });
               }
             )
@@ -111,70 +119,61 @@ export class CourseSelectComponent implements OnInit {
   private _classFilter(name: string): any[] {
     const filterValue = name.toLowerCase();
 
-    return this.courses.filter(course => course.courseName.toLowerCase().indexOf(filterValue) !== -1);
+    return this.courses.filter(course => (course['courseId'] + course['courseName']).toLowerCase().indexOf(filterValue) != -1);
   }
 
   private _teacherFilter(name: string): any[] {
     const filterValue = name.toLowerCase();
 
-    return this.teachers.filter(teacher => teacher.lastName.toLowerCase().indexOf(filterValue) !== -1);
+    return this.teachers.filter(teacher => (teacher['firstName'] + " " +  teacher['lastName']).toLowerCase().indexOf(filterValue) != -1);
   }
 
   showSelected(a: any) {
-    this.api.GetCourseUsers(a.value).subscribe((data: any) => { this.tableData = data }, () => { }, () => {
-      console.log(this.tableData);
+
+    this.api.GetCourseUsers(a.value['courseId'], a.value['period'], a.value['teacher'], a.value['term']).subscribe((data: any) => { this.tableData = data }, () => { }, () => {
     });
   }
 
 
   classSelected(a: any, boxId: Number) {
-    this.classFilteredOptions[boxId.valueOf() - 1] = this.classControls[boxId.valueOf() - 1].valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.courseName),
-        map(courseName => courseName ? this._classFilter(courseName) : this.courses.slice())
-      );
-
-    console.log(a);
-    console.log(boxId);
 
     // only send post request to api if both teacher and class are filled
-    if (this.teacherControls[boxId.valueOf() - 1].value != "")
-    {
+    if (this.teacherControls[boxId.valueOf() - 1].value != "") {
       var teacherVal = this.teacherControls[boxId.valueOf() - 1].value;
-      console.log(teacherVal);
-      console.log(this.classControls[boxId.valueOf() - 1]);
-      this.api.AddUserCourse(this.classControls[boxId.valueOf() - 1].value.courseId, this.userEmail, boxId, teacherVal['firstName'] + " " + teacherVal['lastName']);
+      this.api.AddUserCourse(this.classControls[boxId.valueOf() - 1].value.courseId, this.userEmail, boxId, teacherVal['firstName'] + " " + teacherVal['lastName']).subscribe(
+        (data: any) => {}, () => {}, () => {this.api.GetUserCourses(this.userEmail).subscribe((data: any) => { this.userCourses = data }, () => { }, () => { });}
+      );
     }
     else
       this.teacherControls[boxId.valueOf() - 1].markAllAsTouched();
+
+    
   }
 
   teacherSelected(a: any, boxId: Number) {
-    this.teacherFilteredOptions[boxId.valueOf() - 1] = this.teacherControls[boxId.valueOf() - 1].valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.lastName),
-        map(lastName => lastName ? this._teacherFilter(lastName) : this.teacherControls.slice())
-      );
+    console.log(this.teacherFilteredOptions);
 
     // only send post request to api if both teacher and class are filled
-    if (this.classControls[boxId.valueOf() - 1].value != "")
-    {
+    if (this.classControls[boxId.valueOf() - 1].value != "") {
       var selectedCourseName = this.classControls[boxId.valueOf() - 1].value["courseName"];
       var selectedCourseID = "";
-      
+
       this.courses.forEach(course => {
-        if(course["courseName"] == selectedCourseName)
+        if (course["courseName"] == selectedCourseName)
           selectedCourseID = course['courseId'];
       });
 
       // need to get the courseID from only the name
-      console.log(a);
-      this.api.AddUserCourse(selectedCourseID, this.userEmail, boxId, a.option.value['firstName'] + " " + a.option.value['lastName']);
+      this.api.AddUserCourse(selectedCourseID, this.userEmail, boxId, a.option.value['firstName'] + " " + a.option.value['lastName']).subscribe(
+        (data: any) => {}, () => {}, () => {this.api.GetUserCourses(this.userEmail).subscribe((data: any) => { this.userCourses = data }, () => { }, () => { });}
+      );
     }
     else
+    {
       this.classControls[boxId.valueOf() - 1].markAllAsTouched();
+    }
+
+    
   }
 
 }
