@@ -11,54 +11,63 @@
                         </mat-card-header>
 
                         <mat-card-content>
+                            <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxFlex1>
 
-                            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="row" fxFlex>
-                                <div fxFlex>
+                                <ng-container *ngFor="let ind of forIndex; let i = index">
+                                    <div fxFlex1>
+                                        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
 
+                                            <div fxFlex>
 
-                                    <ng-container *ngFor="let ind of forIndex; let i = index">
-                                        <form class="class-select-form">
-                                            <mat-form-field class="class-select-autocomplete">
-                                                <input type="text" placeholder="{{'Period ' + (i + 1).toString()}}"
-                                                    attr.aria-label="{{'Period ' + (i + 1).toString()}}" matInput
-                                                    [formControl]="classControls[i]" [matAutocomplete]="auto">
-                                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="courseDisplay"
-                                                    (optionSelected)="classSelected($event, i + 1)">
-                                                    <mat-option *ngFor="let option of classFilteredOptions[i] | async"
-                                                        [value]="option">
-                                                        {{option.courseName}}
-                                                    </mat-option>
-                                                </mat-autocomplete>
-                                            </mat-form-field>
-                                        </form>
-                                    </ng-container>
+                                                <form class="class-select-form">
+                                                    <mat-form-field class="class-select-autocomplete">
+                                                        <input type="text"
+                                                            placeholder="{{'Period ' + (i + 1).toString()}}"
+                                                            attr.aria-label="{{'Period ' + (i + 1).toString()}}"
+                                                            matInput [formControl]="classControls[i]"
+                                                            [matAutocomplete]="auto1">
+                                                        <mat-autocomplete #auto1="matAutocomplete"
+                                                            [displayWith]="courseDisplay"
+                                                            (optionSelected)="classSelected($event, i + 1)">
+                                                            <mat-option
+                                                                *ngFor="let option of classFilteredOptions[i] | async"
+                                                                [value]="option">
+                                                                {{option.courseName}}
+                                                            </mat-option>
+                                                        </mat-autocomplete>
+                                                    </mat-form-field>
+                                                </form>
+                                            </div>
 
-                                </div>
+                                            <div fxFlex>
 
-                                <div fxFlex>
+                                                <form class="class-select-form">
+                                                    <mat-form-field class="class-select-autocomplete">
+                                                        <input type="text"
+                                                            placeholder="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
+                                                            attr.aria-label="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
+                                                            matInput [formControl]="teacherControls[i]"
+                                                            [matAutocomplete]="auto">
+                                                        <mat-autocomplete #auto="matAutocomplete"
+                                                            [displayWith]="teacherDisplay"
+                                                            (optionSelected)="teacherSelected($event, i + 1)">
+                                                            <mat-option
+                                                                *ngFor="let option of teacherFilteredOptions[i] | async"
+                                                                [value]="option">
+                                                                {{option.firstName}} {{option.lastName}}
+                                                            </mat-option>
+                                                        </mat-autocomplete>
+                                                    </mat-form-field>
+                                                </form>
 
-                                    <ng-container *ngFor="let ind of forIndex; let i = index">
-                                        <form class="class-select-form">
-                                            <mat-form-field class="class-select-autocomplete">
-                                                <input type="text"
-                                                    placeholder="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
-                                                    attr.aria-label="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
-                                                    matInput [formControl]="teacherControls[i]"
-                                                    [matAutocomplete]="auto">
-                                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="teacherDisplay"
-                                                    (optionSelected)="teacherSelected($event, i + 1)">
-                                                    <mat-option *ngFor="let option of teacherFilteredOptions[i] | async"
-                                                        [value]="option">
-                                                        {{option.firstName}} {{option.lastName}}
-                                                    </mat-option>
-                                                </mat-autocomplete>
-                                            </mat-form-field>
-                                        </form>
-                                    </ng-container>
+                                            </div>
 
-                                </div>
+                                        </div>
+
+                                    </div>
+                                </ng-container>
+
                             </div>
-
                         </mat-card-content>
                     </mat-card>
 
@@ -69,52 +78,63 @@
 
                         <mat-card-content>
 
-                            <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="row" fxFlex>
-                                <div fxFlex>
+                            <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxFlex1>
 
-                                    <ng-container *ngFor="let ind of forIndex; let i = index">
-                                        <form class="class-select-form">
-                                            <mat-form-field class="class-select-autocomplete">
-                                                <input type="text" placeholder="{{'Period ' + (i + 1).toString()}}"
-                                                    attr.aria-label="{{'Period ' + (i + 1).toString()}}" matInput
-                                                    [formControl]="classControls[i + 4]" [matAutocomplete]="auto">
-                                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="courseDisplay"
-                                                    (optionSelected)="classSelected($event, i + 5)">
-                                                    <mat-option *ngFor="let option of classFilteredOptions[i + 4] | async"
-                                                        [value]="option">
-                                                        {{option.courseName}}
-                                                    </mat-option>
-                                                </mat-autocomplete>
-                                            </mat-form-field>
-                                        </form>
-                                    </ng-container>
+                                <ng-container *ngFor="let ind of forIndex; let i = index">
+                                    <div fxFlex1>
+                                        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
 
-                                </div>
+                                            <div fxFlex>
 
+                                                <form class="class-select-form">
+                                                    <mat-form-field class="class-select-autocomplete">
+                                                        <input type="text"
+                                                            placeholder="{{'Period ' + (i + 1).toString()}}"
+                                                            attr.aria-label="{{'Period ' + (i + 1).toString()}}"
+                                                            matInput [formControl]="classControls[i + 4]"
+                                                            [matAutocomplete]="auto1">
+                                                        <mat-autocomplete #auto1="matAutocomplete"
+                                                            [displayWith]="courseDisplay"
+                                                            (optionSelected)="classSelected($event, i + 5)">
+                                                            <mat-option
+                                                                *ngFor="let option of classFilteredOptions[i + 4] | async"
+                                                                [value]="option">
+                                                                {{option.courseName}}
+                                                                <div *ngIf="option.courseName == 'Economics'"> Click for more info. </div>
+                                                            </mat-option>
+                                                        </mat-autocomplete>
+                                                    </mat-form-field>
+                                                </form>
+                                            </div>
 
-                                <div fxFlex>
+                                            <div fxFlex>
 
-                                    <ng-container *ngFor="let ind of forIndex; let i = index">
-                                        <form class="class-select-form">
-                                            <mat-form-field class="class-select-autocomplete">
-                                                <input type="text"
-                                                    placeholder="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
-                                                    attr.aria-label="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
-                                                    matInput [formControl]="teacherControls[i + 4]"
-                                                    [matAutocomplete]="auto">
-                                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="teacherDisplay"
-                                                    (optionSelected)="teacherSelected($event, i + 5)">
-                                                    <mat-option
-                                                        *ngFor="let option of teacherFilteredOptions[i + 4] | async"
-                                                        [value]="option">
-                                                        {{option.firstName}} {{option.lastName}}
-                                                    </mat-option>
-                                                </mat-autocomplete>
-                                            </mat-form-field>
-                                        </form>
-                                    </ng-container>
+                                                <form class="class-select-form">
+                                                    <mat-form-field class="class-select-autocomplete">
+                                                        <input type="text"
+                                                            placeholder="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
+                                                            attr.aria-label="{{'Period ' + (i + 1).toString() + ' Teacher'}}"
+                                                            matInput [formControl]="teacherControls[i + 4]"
+                                                            [matAutocomplete]="auto">
+                                                        <mat-autocomplete #auto="matAutocomplete"
+                                                            [displayWith]="teacherDisplay"
+                                                            (optionSelected)="teacherSelected($event, i + 5)">
+                                                            <mat-option
+                                                                *ngFor="let option of teacherFilteredOptions[i + 4] | async"
+                                                                [value]="option">
+                                                                {{option.firstName}} {{option.lastName}}
+                                                            </mat-option>
+                                                        </mat-autocomplete>
+                                                    </mat-form-field>
+                                                </form>
 
-                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </ng-container>
+
                             </div>
 
                         </mat-card-content>

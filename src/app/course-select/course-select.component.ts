@@ -119,13 +119,37 @@ export class CourseSelectComponent implements OnInit {
   private _classFilter(name: string): any[] {
     const filterValue = name.toLowerCase();
 
-    return this.courses.filter(course => (course['courseId'] + course['courseName']).toLowerCase().indexOf(filterValue) != -1);
+    // var filtered = [];
+    // var splitValues = filterValue.split(" ");
+    // for (var i = 0; i < this.teachers.length; i++) {
+    //   var checkValue = (this.courses[i]['courseId'] + " " + this.courses[i]['courseName']).toLowerCase();
+    //   for (var j = 0; j < splitValues.length; j++) {
+    //     if (checkValue.indexOf(splitValues[j]) != -1 && splitValues[j] != "") {
+    //       filtered.push(this.courses[i]);
+    //       break;
+    //     }
+    //   }
+    // }
+
+    return this.courses.filter(x => x.courseName.toLowerCase().indexOf(filterValue) != -1);
   }
 
   private _teacherFilter(name: string): any[] {
     const filterValue = name.toLowerCase();
 
-    return this.teachers.filter(teacher => (teacher['firstName'] + " " +  teacher['lastName']).toLowerCase().indexOf(filterValue) != -1);
+    var filtered = [];
+    var splitValues = filterValue.split(" ");
+    for (var i = 0; i < this.teachers.length; i++) {
+      var checkValue = (this.teachers[i]['firstName'] + " " + this.teachers[i]['lastName']).toLowerCase();
+      for (var j = 0; j < splitValues.length; j++) {
+        if (checkValue.indexOf(splitValues[j]) != -1) {
+          filtered.push(this.teachers[i]);
+          break;
+        }
+      }
+    }
+
+    return filtered;
   }
 
   showSelected(a: any) {
@@ -141,13 +165,13 @@ export class CourseSelectComponent implements OnInit {
     if (this.teacherControls[boxId.valueOf() - 1].value != "") {
       var teacherVal = this.teacherControls[boxId.valueOf() - 1].value;
       this.api.AddUserCourse(this.classControls[boxId.valueOf() - 1].value.courseId, this.userEmail, boxId, teacherVal['firstName'] + " " + teacherVal['lastName']).subscribe(
-        (data: any) => {}, () => {}, () => {this.api.GetUserCourses(this.userEmail).subscribe((data: any) => { this.userCourses = data }, () => { }, () => { });}
+        (data: any) => { }, () => { }, () => { this.api.GetUserCourses(this.userEmail).subscribe((data: any) => { this.userCourses = data }, () => { }, () => { }); }
       );
     }
     else
       this.teacherControls[boxId.valueOf() - 1].markAllAsTouched();
 
-    
+
   }
 
   teacherSelected(a: any, boxId: Number) {
@@ -165,15 +189,14 @@ export class CourseSelectComponent implements OnInit {
 
       // need to get the courseID from only the name
       this.api.AddUserCourse(selectedCourseID, this.userEmail, boxId, a.option.value['firstName'] + " " + a.option.value['lastName']).subscribe(
-        (data: any) => {}, () => {}, () => {this.api.GetUserCourses(this.userEmail).subscribe((data: any) => { this.userCourses = data }, () => { }, () => { });}
+        (data: any) => { }, () => { }, () => { this.api.GetUserCourses(this.userEmail).subscribe((data: any) => { this.userCourses = data }, () => { }, () => { }); }
       );
     }
-    else
-    {
+    else {
       this.classControls[boxId.valueOf() - 1].markAllAsTouched();
     }
 
-    
+
   }
 
 }
